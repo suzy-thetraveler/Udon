@@ -92,10 +92,10 @@ public class HomeController {
 	}
 
 	// 클럽 지원한 회원들 보기
-	@RequestMapping(value = "/apply_member", method = RequestMethod.GET)
+	@RequestMapping(value = "/apply_members", method = RequestMethod.GET)
 	public String apply_members() {
 
-		return "content/apply_member";
+		return "content/apply_members";
 	}
 
 	// 로그인 페이지
