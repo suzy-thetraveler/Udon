@@ -32,9 +32,9 @@
         </div>
         <div class="main">
             <div class="m-left">
-                <div class="profile">
+                <div class="profile" th:each="club : ${clubList}">
                     <span style="text-align: center"><img src="img/a.jpg" width="250px" height="250px" /></span>
-                    <p style="text-align: center; font-size: 20px; font-weight: bold; padding-top: 10px;">소형견 사회화 모임</p>
+                    <p th:text="${club.name}" style="text-align: center; font-size: 20px; font-weight: bold; padding-top: 10px;"></p>
                 </div>
                 <div class="profile-des">
                     <a href="club_members"><p>멤버 41</p></a>
