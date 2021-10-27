@@ -1,8 +1,9 @@
 package com.example.demo.model;
 
+import lombok.Builder;
 import lombok.Data;
 
-@Data
+@Builder @Data
 public class ClubModel {
 	private int clubno;
 	private String name;
