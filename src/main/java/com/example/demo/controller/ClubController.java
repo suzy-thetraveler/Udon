@@ -18,9 +18,14 @@ public class ClubController {
 
 	// 내 클럽 목록, 클럽 만들기 가능
 	@RequestMapping(value = "/myclub", method = RequestMethod.GET)
-	public String myclub() {
-
-		return "content/myclub";
+	public ModelAndView myclub(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		
+		List<ClubModel> clubList = clubService.selectItem();
+		mav.addObject("clubList",clubList);
+		mav.setViewName("content/myclub.html");
+		
+		return mav;
 	}
 
 	// 클럽 페이지
