@@ -44,7 +44,7 @@
                         <br />초대로만 가입이 가능합니다.</p>
                 </div>
             </div>
-            <div class="m-right">
+            <div class="m-right" >
                 <div class="r-search">
                     <div class="s-top">
                         <p>멤버 41</p>
@@ -74,9 +74,9 @@
                     </div>
                     <button type="submit" name="search"><img src="img/mag.png" width="40px" height="40px" style="background-color: mediumpurple; padding: 10px;"></button><input type="text" name="search" placeholder="검색할 멤버를 입력해주세요" />
                 </div>
-                <div class="r-member">
+                <div class="r-member" th:each="member : ${memberList}">
                     <span class="photo"><img src="img/b.jpg" width="40px" height="40px" style="border-radius: 30px;"></span>
-                    <p class="name"><b>최고심</b></p>
+                    <p class="name" ><b th:text="${member.name}"></b></p>
                     <p class="state">오늘은 내가 짜파게티 요리사</p>
                     <a href="#">
                         <p>메세지</p>

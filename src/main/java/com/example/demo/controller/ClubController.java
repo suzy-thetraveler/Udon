@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.net.http.HttpRequest;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.ClubModel;
+import com.example.demo.model.MemberModel;
 import com.example.demo.service.ClubService;
+import com.example.demo.service.MemberService;
 
 @Controller
 public class ClubController {
@@ -31,6 +34,8 @@ public class ClubController {
 	// 클럽 페이지
 	@Autowired
 	ClubService clubService;
+	@Autowired
+	MemberService memberService;
 
 	@RequestMapping(value = "/club_detail", method = RequestMethod.GET)
 		public ModelAndView club_detail(HttpServletRequest request) {
@@ -65,9 +70,15 @@ public class ClubController {
 
 	// 클럽 멤버 찾기, 메세지 기능
 	@RequestMapping(value = "/club_members", method = RequestMethod.GET)
-	public String club_members() {
+	public ModelAndView club_members(HttpServletRequest request) {
 
-		return "content/club_members";
+		ModelAndView mav = new ModelAndView();
+		
+		List<MemberModel> memberList = memberService.selectItem();
+		mav.addObject("memberList",memberList);
+		mav.setViewName("content/club_members.html");
+
+		return mav;
 	}
 
 	// 클럽 만들기 대분류선택
