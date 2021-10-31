@@ -34,14 +34,14 @@
             <div class="title">
                 <h3>모집 글 리스트[Sports]</h3>
             </div>
-            <div class="post">
+            <div class="post" th:each="posting : ${postList}">
                 <div class="photo"><span><img src="img/b.jpg" width="40px" height="40px" style="border-radius: 30px;"></span>
-                    <p class="name">노상처리기사</p>
+                    <p class="name" th:text="posting.writer"></p>
                 </div>
                 <div class="content">
                     <a href="recruit_detail">
                         <p style="font-size: 20px">
-                            <b>[<span style="font-weight: bold; color: red">풋살</span>]&nbsp;주말 아침마다 풋살 하실 분 구합니다!&nbsp;(10명/16명)</b>
+                            <b>[<span style="font-weight: bold; color: red" th:text="posting.sort">풋살</span>]<b th:text="posting.title"></b>(10명/16명)</b>
                         </p>
                     </a>
                     <a href="#">
@@ -50,10 +50,10 @@
                 </div>
                 <div class="LnC">
                     <a href="#">
-                        <p>좋아요(21)&nbsp;</p>
+                        <p th:text="posting.like">좋아요(21)&nbsp;</p>
                     </a>
                     <a href="recruit_detail">
-                        <p>댓글(5)</p>
+                        <p th:text="posting.hit">조회수(5)</p>
                     </a>
                 </div>
             </div>
