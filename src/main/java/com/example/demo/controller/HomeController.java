@@ -1,21 +1,36 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.example.demo.model.PostModel;
+import com.example.demo.service.PostService;
 
 @Controller
 public class HomeController {
-	//메인페이지
-	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public String Home(HttpServletRequest request) {
+	@Autowired
+	PostService postService;
 
-		return "content/main";
+	// 메인페이지
+	@RequestMapping(value = "/main", method = RequestMethod.GET)
+	public ModelAndView Home(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView();
+
+		List<PostModel> postList = postService.selectItem();
+		mav.addObject("postList", postList);
+		mav.setViewName("content/main");
+
+		return mav;
 	}
 
-	
 	// 로그인 페이지
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
@@ -44,7 +59,6 @@ public class HomeController {
 
 		return "content/mypage";
 	}
-
 
 	// 회원정보
 	@RequestMapping(value = "/myinfo", method = RequestMethod.GET)
