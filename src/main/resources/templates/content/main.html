@@ -126,10 +126,10 @@
                 </div>
             </div>
             <div class="main-r">
-                <div class="m-board">
+                <div class="m-board" th:each="posting : ${postList}">
                     <span style="font-weight: bold; font-size: 17px; padding-bottom: 15px;"><a href="#">전체 베스트 Top10</a></span>
                     <ul>
-                        <li><a href="#">1. 군대 이야기 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;댓글(12) 좋아요(10)</a></li>
+                        <li><a href="#" th:text="posting.title">1. 군대 이야기 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;댓글(12) 좋아요(10)</a></li>
                         <li><a href="#">2. 대박사건있었음 &nbsp;&nbsp;댓글(12) 좋아요(10)</a></li>
                         <li><a href="#">3. 사실..있잖아... &nbsp;&nbsp;&nbsp;&nbsp;댓글(12) 좋아요(10)</a></li>
                         <li><a href="#">4. 군대 이야기 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;댓글(12) 좋아요(10)</a></li>
