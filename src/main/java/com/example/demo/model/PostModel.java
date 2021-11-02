@@ -14,4 +14,5 @@ public class PostModel {
 	private int member_memberno;
 	private int like;
 	private int hit;
+	private int c_num;//댓글수
 }

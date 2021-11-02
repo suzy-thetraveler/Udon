@@ -125,9 +125,22 @@
 
     .m-board {
         width: 100%;
-        margin-bottom: 15px;
+        margin: 15px;
+        padding: 10px 5px 0 5px;
         background-color: #f3f3f3;
     }
+    
+    .b-title{
+    	display: grid;
+    	grid-template-columns: 1fr 0.4fr 0.1fr 0.3fr 0.1fr;
+    	gap: 5px;
+    }
+    
+    .b-side{
+    	display:grid;
+    	place-self: start end;
+    }
+    
 
     .m-board>li>a:hover {
         color: purple;
