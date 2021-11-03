@@ -11,4 +11,6 @@ import com.example.demo.model.ClubModel;
 @Mapper
 public interface ClubMapper {
 	List<ClubModel> selectItem();
+	
+	
 }
