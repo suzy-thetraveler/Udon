@@ -16,5 +16,9 @@ public class ClubService {
 	public List<ClubModel> selectItem(){
 		return mapper.selectItem();
 	}
+	
+	public List<ClubModel> selectOne(){
+		return mapper.selectOne();
+	}
 
 }

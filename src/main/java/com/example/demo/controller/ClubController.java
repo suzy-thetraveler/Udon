@@ -42,13 +42,14 @@ public class ClubController {
 		public ModelAndView club_detail(HttpServletRequest request, @RequestParam(value="clubno", required=false) int clubno) {
 			ModelAndView mav = new ModelAndView();
 			
-			//ClubModel input = new ClubModel();//빌더패턴에 대한거 알아보기.
-			//input.setClubno(clubno);
+			ClubModel input = new ClubModel();//빌더패턴에 대한거 알아보기.
+			clubno = 1;
+			input.setClubno(clubno);
 			
-			List<ClubModel> clubList = clubService.selectItem();
+			//List<ClubModel> clubList = clubService.selectOne(input);
+			//파라미터작업 이어가야함
 			
-			
-			mav.addObject("clubList",clubList);
+			//mav.addObject("clubList",clubList);
 			mav.setViewName("content/club_detail.html");
 
 			return mav;
