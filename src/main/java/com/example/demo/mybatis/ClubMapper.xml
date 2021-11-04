@@ -11,6 +11,9 @@
 	</resultMap>
 
 	<select id="selectItem" resultType="ClubModel" resultMap="clubMap">
+		SELECT * FROM CLUB;
+	</select>
+	<select id="selectOne" resultType="ClubModel" resultMap="clubMap">
 		SELECT * FROM CLUB WHERE clubno=#{clubno};
 	</select>
 </mapper>
