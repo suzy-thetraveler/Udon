@@ -41,12 +41,13 @@ public class ClubController {
 	@RequestMapping(value = "/club_detail", method = RequestMethod.GET)
 		public ModelAndView club_detail(HttpServletRequest request, @RequestParam(value="clubno", required=false) int clubno) {
 			ModelAndView mav = new ModelAndView();
-			
+			/**
 			ClubModel input = new ClubModel();
 			input.setClubno(1);
 			List<ClubModel> clubList = clubService.selectOne(input);
 			
 			mav.addObject("clubList",clubList);
+			*/
 			mav.setViewName("content/club_detail.html");
 
 			return mav;
