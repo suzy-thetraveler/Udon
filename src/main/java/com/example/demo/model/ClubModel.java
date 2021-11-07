@@ -3,7 +3,7 @@ package com.example.demo.model;
 import lombok.Builder;
 import lombok.Data;
 
-@Builder(builderMethodName = "ClubModelBuilder")
+
 @Data
 public class ClubModel {
 	private int clubno;
