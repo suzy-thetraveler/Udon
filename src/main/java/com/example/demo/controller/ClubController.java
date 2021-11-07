@@ -41,15 +41,13 @@ public class ClubController {
 	@RequestMapping(value = "/club_detail", method = RequestMethod.GET)
 		public ModelAndView club_detail(HttpServletRequest request, @RequestParam(value="clubno", required=false) int clubno) {
 			ModelAndView mav = new ModelAndView();
+			/**
+			ClubModel input = new ClubModel();
+			input.setClubno(1);
+			List<ClubModel> clubList = clubService.selectOne(input);
 			
-			//ClubModel input = new ClubModel();//빌더패턴에 대한거 알아보기.
-			//ClubModel input = new ClubModel(1, null, null, clubno);
-			//빌더가 실행이 안되는 이유를 찾아야함
-			
-			//List<ClubModel> clubList = clubService.selectOne(input);
-			//파라미터작업 이어가야함
-			
-			//mav.addObject("clubList",clubList);
+			mav.addObject("clubList",clubList);
+			*/
 			mav.setViewName("content/club_detail.html");
 
 			return mav;

@@ -12,5 +12,5 @@ import com.example.demo.model.ClubModel;
 public interface ClubMapper {
 	List<ClubModel> selectItem();
 	
-	List<ClubModel> selectOne();
+	List<ClubModel> selectOne(ClubModel input);
 }
