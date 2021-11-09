@@ -17,6 +17,7 @@ import com.example.demo.model.MemberModel;
 import com.example.demo.service.ClubService;
 import com.example.demo.service.MemberService;
 
+
 @Controller
 public class ClubController {
 
@@ -39,15 +40,18 @@ public class ClubController {
 	MemberService memberService;
 
 	@RequestMapping(value = "/club_detail", method = RequestMethod.GET)
-		public ModelAndView club_detail(HttpServletRequest request, @RequestParam(value="clubno", required=false) int clubno) {
+		public ModelAndView club_detail(HttpServletRequest request) {
 			ModelAndView mav = new ModelAndView();
-			/**
+		
 			ClubModel input = new ClubModel();
 			input.setClubno(1);
-			List<ClubModel> clubList = clubService.selectOne(input);
+			ClubModel output = null;
 			
-			mav.addObject("clubList",clubList);
-			*/
+			try {
+				output = clubService.selectOne(input);
+			} catch(Exception e) { e.printStackTrace(); }
+			
+			mav.addObject("output",output);
 			mav.setViewName("content/club_detail.html");
 
 			return mav;
