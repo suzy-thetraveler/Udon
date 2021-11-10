@@ -20,6 +20,10 @@ import com.example.demo.service.MemberService;
 
 @Controller
 public class ClubController {
+	@Autowired
+	ClubService clubService;
+	@Autowired
+	MemberService memberService;
 
 	// 내 클럽 목록, 클럽 만들기 가능
 	@RequestMapping(value = "/myclub", method = RequestMethod.GET)
@@ -27,6 +31,7 @@ public class ClubController {
 		ModelAndView mav = new ModelAndView();
 		
 		List<ClubModel> clubList = clubService.selectItem();
+		
 		mav.addObject("clubList",clubList);
 		mav.setViewName("content/myclub.html");
 		
@@ -34,24 +39,15 @@ public class ClubController {
 	}
 
 	// 클럽 페이지
-	@Autowired
-	ClubService clubService;
-	@Autowired
-	MemberService memberService;
-
 	@RequestMapping(value = "/club_detail", method = RequestMethod.GET)
-		public ModelAndView club_detail(HttpServletRequest request) {
+		public ModelAndView club_detail(HttpServletRequest request, @RequestParam(value="clubno", required=false) int clubno) throws Exception {
 			ModelAndView mav = new ModelAndView();
 		
-			ClubModel input = new ClubModel();
-			input.setClubno(1);
-			ClubModel output = null;
+			ClubModel input = ClubModel.builder().clubno(clubno).build();
+			ClubModel clubModel = clubService.selectOne(input);
+			//clubno어떻게 처리할 것인지 생각해봐야함,타임리프 수정필요
 			
-			try {
-				output = clubService.selectOne(input);
-			} catch(Exception e) { e.printStackTrace(); }
-			
-			mav.addObject("output",output);
+			mav.addObject("clubModel",clubModel);
 			mav.setViewName("content/club_detail.html");
 
 			return mav;
