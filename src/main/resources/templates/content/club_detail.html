@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <div class="container" th:each="club : ${output}">
+    <div class="container" th:each="club : ${clubModel}">
         <div class="header">
             <div class="h-logo">
                 <a href="main" style="font-size: 40px;"><b>Udon</b></a>
@@ -34,11 +34,11 @@
             <div class="m-left">
                 <div class="profile" >
                     <span style="text-align: center"><img src="img/a.jpg" width="250px" height="250px" /></span>
-                    <p th:text="${output.name}" style="text-align: center; font-size: 20px; font-weight: bold; padding-top: 10px;"></p>
+                    <p th:text="${club.name}" style="text-align: center; font-size: 20px; font-weight: bold; padding-top: 10px;"></p>
                 </div>
                 <div class="profile-des">
                     <a href="club_members"><p>멤버 41</p></a>
-                    <p th:text="${output.des}"></p>
+                    <p th:text="${club.des}"></p>
                 </div>
             </div>
             <div class="m-right">
