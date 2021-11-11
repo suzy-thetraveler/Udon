@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import java.net.http.HttpRequest;
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,8 +14,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.ClubModel;
 import com.example.demo.model.MemberModel;
+import com.example.demo.model.PostModel;
 import com.example.demo.service.ClubService;
 import com.example.demo.service.MemberService;
+import com.example.demo.service.PostService;
 
 
 @Controller
@@ -24,6 +26,9 @@ public class ClubController {
 	ClubService clubService;
 	@Autowired
 	MemberService memberService;
+	@Autowired
+	PostService postService;
+	
 
 	// 내 클럽 목록, 클럽 만들기 가능
 	@RequestMapping(value = "/myclub", method = RequestMethod.GET)
@@ -45,8 +50,11 @@ public class ClubController {
 		
 			ClubModel input = ClubModel.builder().clubno(clubno).build();
 			ClubModel clubModel = clubService.selectOne(input);
-			//clubno어떻게 처리할 것인지 생각해봐야함,타임리프 수정필요
 			
+			PostModel input2= PostModel.builder().community_commno(clubno).build();
+			PostModel postList = postService.selectOne(input2);
+			
+			mav.addObject("postList", postList);
 			mav.addObject("clubModel",clubModel);
 			mav.setViewName("content/club_detail.html");
 

@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <div class="container" th:each="club : ${clubModel}">
+    <div class="container" >
         <div class="header">
             <div class="h-logo">
                 <a href="main" style="font-size: 40px;"><b>Udon</b></a>
@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="main">
-            <div class="m-left">
+            <div class="m-left" th:each="club : ${clubModel}">
                 <div class="profile" >
                     <span style="text-align: center"><img src="img/a.jpg" width="250px" height="250px" /></span>
                     <p th:text="${club.name}" style="text-align: center; font-size: 20px; font-weight: bold; padding-top: 10px;"></p>
@@ -49,7 +49,7 @@
                     <span><a href="club_vote">투표</a></span>
                 </div>
                 <div class="write">
-                    <div class="write-box">
+                    <div class="write-box" >
                         <input type="text" name="posting" placeholder="내용을 입력해주세요" style="height: 150px; width:500px; border-radius: 5px; border: none;" />
                     </div>
                     <div class="write-bottom">
@@ -61,23 +61,23 @@
                         <button type="submit" name="posting" class="btn btn-info btn-sm">글쓰기</button>
                     </div>
                 </div>
-                <div class="club-post">
+                <div class="club-post" th:each="post : ${postList}">
                     <div class="post">
                         <div class="profile-photo">
                             <span><img src="img/a.jpg" width="50px" height="50px" style="border-radius: 20px;"></span>
-                            <p>고심일등사랑</p>
+                            <p th:text="${post.writer}"></p>
                         </div>
                         <div class="post-right">
-                            <p style="font-size: 12px;">2021년 10월 07일 21시22분</p>
+                            <p style="font-size: 12px;" th:text="${post.date}"></p>
                             <span><img src="img/c-ramen.jpg" width="400px" height="300px"></span>
                         </div>
                     </div>
                     <div class="journal">
-                        <p>오늘 강동역앞에 새로생긴 라멘집 가봤는데 진짜 맛있었음!<br /> 제발 꼭 가봐요 여러분 ㅠㅠㅠ<br />아니면 다음 미팅 여기서 어떠십니까 여러분 애견동반가능해요!</p>
+                        <p th:text="${post.content}"></p>
                     </div>
                     <div class="comments">
-                        <span style="padding: 0 20px;"><a href="#">좋아요(21)</a></span>
-                        <span><a href="#">댓글(1)</a></span>
+                        <span style="padding: 0 20px;">좋아요<a href="#" th:text="${post.lie}"></a></span>
+                        <span>댓글<a href="#" th:text="${post.c_num}"></a></span>
                     </div>
                     <div class="comment">
                         <div class="c-profile">

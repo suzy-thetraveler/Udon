@@ -11,4 +11,6 @@ import com.example.demo.model.PostModel;
 @Mapper
 public interface PostMapper {
 	List<PostModel> selectItem();
+	
+	PostModel selectOne(PostModel input);
 }
