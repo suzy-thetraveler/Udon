@@ -16,4 +16,8 @@ public class PostService {
 	public List<PostModel> selectItem(){
 		return mapper.selectItem();
 	}
+	
+	public PostModel selectOne(PostModel input) {
+		return mapper.selectOne(input);
+	}
 }
