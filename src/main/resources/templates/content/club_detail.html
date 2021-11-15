@@ -76,9 +76,14 @@
                         <p th:text="${post.content}"></p>
                     </div>
                     <div class="comments">
-                        <span style="padding: 0 20px;">좋아요<a href="#" th:text="${post.lie}"></a></span>
-                        <span>댓글<a href="#" th:text="${post.c_num}"></a></span>
+                        <span style="padding: 0 30px;">좋아요(<a href="#" th:text="${post.like}"></a>)</span>
+                        <span>댓글(<a href="#" th:text="${post.c_num}"></a>)</span>
+                        <br/>
+                        <input type="text" placeholder="댓글을 입력해주세요." style="margin: 10px 10px 10px 30px; width:80%; height:60px; text-align: center; border: solid 1px #d0d0d0"/>
+                        <button type="submit" class="btn btn-warning" style="width:50px; height:50px;">등록</button>
                     </div>
+                    <input type="hidden" th:name="postno" th:value="${post.postno}" />
+                    
                     <div class="comment">
                         <div class="c-profile">
                             <span><img src="img/b.jpg" width="40px" height="40px"></span>

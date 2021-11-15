@@ -2,8 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.demo.mapper.CommentMapper">
+
+	<resultMap type="com.example.demo.model.CommentModel" id="commentMap">
+		<result property="commentno" column="commentno"/>
+		<result property="content" column="content"/>
+		<result property="date" column="date"/>
+		<result property="member_memberno" column="member_memberno"/>
+		<result property="post_postno" column="post_postno"/>
+	</resultMap>
+
 	<select id="selectItem" resultType="CommentModel">
 		SELECT * FROM COMMENT;
+	</select>
+	<select id="selectOne" resultType="CommentModel" resultMap="commentMap">
+		SELECT * FROM COMMENT WHERE post_postno=#{post_postno};
 	</select>
 </mapper>
 
