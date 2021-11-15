@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.ClubModel;
+import com.example.demo.model.CommentModel;
 import com.example.demo.model.MemberModel;
 import com.example.demo.model.PostModel;
 import com.example.demo.service.ClubService;
+import com.example.demo.service.CommentService;
 import com.example.demo.service.MemberService;
 import com.example.demo.service.PostService;
 
@@ -28,6 +30,8 @@ public class ClubController {
 	MemberService memberService;
 	@Autowired
 	PostService postService;
+	@Autowired
+	CommentService commentService;
 	
 
 	// 내 클럽 목록, 클럽 만들기 가능
@@ -52,10 +56,15 @@ public class ClubController {
 			ClubModel clubModel = clubService.selectOne(input);
 			
 			PostModel input2= PostModel.builder().community_commno(clubno).build();
-			PostModel postList = postService.selectOne(input2);
+			List<PostModel> postList = postService.selectOne(input2);
+			
+			//CommentModel input3= CommentModel.builder().post_postno(postno).build();
+			//CommentModel commentModel = commentService.selectOne(input3);
+			//,@RequestParam(value="postno", required=false) int postno 처리해야함..ㅠ
 			
 			mav.addObject("postList", postList);
 			mav.addObject("clubModel",clubModel);
+			//mav.addObject("commentModel",commentModel);
 			mav.setViewName("content/club_detail.html");
 
 			return mav;

@@ -11,13 +11,12 @@ import com.example.demo.model.ClubModel;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
+
 @Service
 public class ClubService {
 	@Autowired
 	public ClubMapper mapper;
-	@Autowired
-	SqlSession sqlSession;
+	
 	
 	public List<ClubModel> selectItem(){
 		return mapper.selectItem();

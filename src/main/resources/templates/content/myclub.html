@@ -36,7 +36,7 @@
             </div>
             <div class="m-blocks" >
                 <div class="club" th:each="club : ${clubList}">
-                    <a  th:href="@{/club_detail(clubno=${club.clubno})}">
+                    <a th:href="@{/club_detail(clubno=${club.clubno})}">
                         <img src="img/a.jpg" width="250px" height="250px" />
                         <p th:text="${club.name}" style="text-align: center; font-size: 20px; font-weight: bold; padding-top: 10px;"></p>
                      
