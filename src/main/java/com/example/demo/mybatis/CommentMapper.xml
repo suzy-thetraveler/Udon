@@ -9,6 +9,7 @@
 		<result property="date" column="date"/>
 		<result property="member_memberno" column="member_memberno"/>
 		<result property="post_postno" column="post_postno"/>
+		<result property="writer" column="writer"/>
 	</resultMap>
 
 	<select id="selectItem" resultType="CommentModel">

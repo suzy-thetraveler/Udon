@@ -2,8 +2,10 @@ package com.example.demo.controller;
 
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,7 +51,7 @@ public class ClubController {
 
 	// 클럽 페이지
 	@RequestMapping(value = "/club_detail", method = RequestMethod.GET)
-		public ModelAndView club_detail(HttpServletRequest request, @RequestParam(value="clubno", required=false) int clubno) throws Exception {
+		public ModelAndView club_detail(HttpServletRequest request,@RequestParam Map<String, Object> paramMap, @RequestParam(value="clubno", required=false) int clubno) throws Exception {
 			ModelAndView mav = new ModelAndView();
 		
 			ClubModel input = ClubModel.builder().clubno(clubno).build();
@@ -58,13 +60,16 @@ public class ClubController {
 			PostModel input2= PostModel.builder().community_commno(clubno).build();
 			List<PostModel> postList = postService.selectOne(input2);
 			
-			//CommentModel input3= CommentModel.builder().post_postno(postno).build();
-			//CommentModel commentModel = commentService.selectOne(input3);
-			//,@RequestParam(value="postno", required=false) int postno 처리해야함..ㅠ
+			
+			CommentModel input3= CommentModel.builder().post_postno(Integer.valueOf(paramMap.get("postno").toString())).build();
+			List<CommentModel> commentList = commentService.selectOne(input3);
+			//https://chaelin1211.github.io/study/2021/04/14/thymeleaf-ajax.html
+			//Map<String, Object>에 문제있음, 이해 필요.
+			
 			
 			mav.addObject("postList", postList);
 			mav.addObject("clubModel",clubModel);
-			//mav.addObject("commentModel",commentModel);
+			mav.addObject("commentList",commentList);
 			mav.setViewName("content/club_detail.html");
 
 			return mav;

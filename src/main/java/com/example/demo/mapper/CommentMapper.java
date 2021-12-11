@@ -12,5 +12,5 @@ import com.example.demo.model.CommentModel;
 public interface CommentMapper {
 	List<CommentModel> selectItem();
 	
-	CommentModel selectOne(CommentModel input);
+	List<CommentModel> selectOne(CommentModel input);
 }
