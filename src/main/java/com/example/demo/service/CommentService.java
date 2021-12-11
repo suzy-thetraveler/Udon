@@ -18,7 +18,7 @@ public class CommentService {
 		return mapper.selectItem();
 	}
 	
-	public CommentModel selectOne(CommentModel input) {
+	public List<CommentModel> selectOne(CommentModel input) {
 		return mapper.selectOne(input);
 	}
 	

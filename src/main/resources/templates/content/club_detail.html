@@ -1,115 +1,132 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no, target-density=medium-dpi">
-    <title>Udon</title>
-    <link rel="icon" href="img/favicon-16x16.png" sizes="16x16">
-    <!-- bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <link th:href="@{/css/club_detail.css}" rel="stylesheet" />
-    
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no, target-density=medium-dpi">
+<title>Udon</title>
+<link rel="icon" href="img/favicon-16x16.png" sizes="16x16">
+<!-- bootstrap -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+	crossorigin="anonymous"></script>
+<link th:href="@{/css/club_detail.css}" rel="stylesheet" />
+
 </head>
 
 <body>
-    <div class="container" >
-        <div class="header">
-            <div class="h-logo">
-                <a href="main" style="font-size: 40px;"><b>Udon</b></a>
-            </div>
-            <div class="h-menu">
-                <span><a href="myclub" style="font-size: 20px;">my우동클</a></span>
-                <span><a href="club_recruit" style="font-size: 20px;">우동클모집</a></span>
-                <span><a href="community" style="font-size: 20px;">우동커뮤니티</a></span>
-            </div>
-            <div class="h-login">
-                <span><a href="login">Login</a></span>
-                <span><a href="myinfo">내정보</a></span>
-            </div>
-        </div>
-        <div class="main">
-            <div class="m-left" th:each="club : ${clubModel}">
-                <div class="profile" >
-                    <span style="text-align: center"><img src="img/a.jpg" width="250px" height="250px" /></span>
-                    <p th:text="${club.name}" style="text-align: center; font-size: 20px; font-weight: bold; padding-top: 10px;"></p>
-                </div>
-                <div class="profile-des">
-                    <a href="club_members"><p>멤버 41</p></a>
-                    <p th:text="${club.des}"></p>
-                </div>
-            </div>
-            <div class="m-right">
-                <div class="menu">
-                    <span><a href="#">게시글</a></span>
-                    <span><a href="club_album">앨범</a></span>
-                    <span><a href="club_calendar">일정</a></span>
-                    <span><a href="club_vote">투표</a></span>
-                </div>
-                <div class="write">
-                    <div class="write-box" >
-                        <input type="text" name="posting" placeholder="내용을 입력해주세요" style="height: 150px; width:500px; border-radius: 5px; border: none;" />
-                    </div>
-                    <div class="write-bottom">
-                    	<div class="attach">
-                            <span><a href="#"><img src="img/folder.png" width="40px" height="40px"></a></span>
-                            <span><a href="#"><img src="img/calendar.png" width="40px" height="40px"></a></span>
-                            <span><a href="#"><img src="img/vote.png" width="40px" height="40px"></a></span>
-                        </div>
-                        <button type="submit" name="posting" class="btn btn-info btn-sm">글쓰기</button>
-                    </div>
-                </div>
-                <div class="club-post" th:each="post : ${postList}">
-                    <div class="post">
-                        <div class="profile-photo">
-                            <span><img src="img/a.jpg" width="50px" height="50px" style="border-radius: 20px;"></span>
-                            <p th:text="${post.writer}"></p>
-                        </div>
-                        <div class="post-right">
-                            <p style="font-size: 12px;" th:text="${post.date}"></p>
-                            <span><img src="img/c-ramen.jpg" width="400px" height="300px"></span>
-                        </div>
-                    </div>
-                    <div class="journal">
-                        <p th:text="${post.content}"></p>
-                    </div>
-                    <div class="comments">
-                        <span style="padding: 0 30px;">좋아요(<a href="#" th:text="${post.like}"></a>)</span>
-                        <span>댓글(<a href="#" th:text="${post.c_num}"></a>)</span>
-                        <br/>
-                        <input type="text" placeholder="댓글을 입력해주세요." style="margin: 10px 10px 10px 30px; width:80%; height:60px; text-align: center; border: solid 1px #d0d0d0"/>
-                        <button type="submit" class="btn btn-warning" style="width:50px; height:50px;">등록</button>
-                    </div>
-                    <input type="hidden" th:name="postno" th:value="${post.postno}" />
-                    
-                    <div class="comment">
-                        <div class="c-profile">
-                            <span><img src="img/b.jpg" width="40px" height="40px"></span>
-                            <p style="font-size: 15px;">고심이등사랑</p>
-                        </div>
-                        <div class="c-comment">
-                            <span>오우 완전 맛있겠는데용? 고고!</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-            <hr />
-        <div class="footer">
-            <div class="logo">
-                <img src="img/logo.png" width="150px;" height="150px;">
-            </div>
-            <div class="f-menu">
-                <br />
-                <span><b><a href="#">서비스소개 &nbsp;&nbsp;</a></b></span>
-                <span><b><a href="#">고객센터</a></b></span>
-                <br /><br /><br /><br />
-                <span><a href="#"> ©Udon 우리동네클럽</a></span>
-            </div>
-        </div>
-    </div>
+	<div class="container">
+		<div class="header">
+			<div class="h-logo">
+				<a href="main" style="font-size: 40px;"><b>Udon</b></a>
+			</div>
+			<div class="h-menu">
+				<span><a href="myclub" style="font-size: 20px;">my우동클</a></span> <span><a
+					href="club_recruit" style="font-size: 20px;">우동클모집</a></span> <span><a
+					href="community" style="font-size: 20px;">우동커뮤니티</a></span>
+			</div>
+			<div class="h-login">
+				<span><a href="login">Login</a></span> <span><a href="myinfo">내정보</a></span>
+			</div>
+		</div>
+		<div class="main">
+			<div class="m-left" th:each="club : ${clubModel}">
+				<div class="profile">
+					<span style="text-align: center"><img src="img/a.jpg"
+						width="250px" height="250px" /></span>
+					<p th:text="${club.name}"
+						style="text-align: center; font-size: 20px; font-weight: bold; padding-top: 10px;"></p>
+				</div>
+				<div class="profile-des">
+					<a href="club_members"><p>멤버 41</p></a>
+					<p th:text="${club.des}"></p>
+				</div>
+			</div>
+			<div class="m-right">
+				<div class="menu">
+					<span><a href="#">게시글</a></span> <span><a href="club_album">앨범</a></span>
+					<span><a href="club_calendar">일정</a></span> <span><a
+						href="club_vote">투표</a></span>
+				</div>
+				<div class="write">
+					<div class="write-box">
+						<input type="text" name="posting" placeholder="내용을 입력해주세요"
+							style="height: 150px; width: 500px; border-radius: 5px; border: none;" />
+					</div>
+					<div class="write-bottom">
+						<div class="attach">
+							<span><a href="#"><img src="img/folder.png"
+									width="40px" height="40px"></a></span> <span><a href="#"><img
+									src="img/calendar.png" width="40px" height="40px"></a></span> <span><a
+								href="#"><img src="img/vote.png" width="40px" height="40px"></a></span>
+						</div>
+						<button type="submit" name="posting" class="btn btn-info btn-sm">글쓰기</button>
+					</div>
+				</div>
+				<div class="club-post" th:each="post : ${postList}">
+					<div class="post">
+						<div class="profile-photo">
+							<span><img src="img/a.jpg" width="50px" height="50px"
+								style="border-radius: 20px;"></span>
+							<p th:text="${post.writer}"></p>
+						</div>
+						<div class="post-right">
+							<p style="font-size: 12px;" th:text="${post.date}"></p>
+							<span><img src="img/c-ramen.jpg" width="400px"
+								height="300px"></span>
+						</div>
+					</div>
+					<div class="journal">
+						<p th:text="${post.content}"></p>
+					</div>
+					 <input type="hidden" name="postno" th:value="${resultMap.postno}">
+					<div class="comments">
+						<span style="padding: 0 30px;">좋아요(<a href="#"
+							th:text="${post.like}"></a>)
+						</span> <span>댓글(<a href="#" th:text="${post.c_num}"></a>)
+						</span> <br /> <input type="text" placeholder="댓글을 입력해주세요."
+							style="margin: 10px 10px 10px 30px; width: 80%; height: 60px; text-align: center; border: solid 1px #d0d0d0" />
+						<button type="submit" class="btn btn-warning"
+							style="width: 50px; height: 50px;">등록</button>
+					</div>
+					<input type="hidden" th:name="postno" th:value="${post.postno}" />
+					<div class="comment" th:each="comment: ${commentList}">
+					<div class="c-profile">
+						<span><img src="img/b.jpg" width="40px" height="40px"></span>
+						<p style="font-size: 15px;" th:text="${comment.writer}"></p>
+					</div>
+					<div class="c-comment">
+						<span th:text="${comment.content}"></span>
+					</div>
+				</div>
+				</div>
+				
+
+			</div>
+		</div>
+		<hr />
+		<div class="footer">
+			<div class="logo">
+				<img src="img/logo.png" width="150px;" height="150px;">
+			</div>
+			<div class="f-menu">
+				<br /> <span><b><a href="#">서비스소개 &nbsp;&nbsp;</a></b></span> <span><b><a
+						href="#">고객센터</a></b></span> <br />
+				<br />
+				<br />
+				<br /> <span><a href="#"> ©Udon 우리동네클럽</a></span>
+			</div>
+		</div>
+	</div>
 </body>
 
 </html>
