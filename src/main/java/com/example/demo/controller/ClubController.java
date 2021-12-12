@@ -51,7 +51,7 @@ public class ClubController {
 
 	// 클럽 페이지
 	@RequestMapping(value = "/club_detail", method = RequestMethod.GET)
-		public ModelAndView club_detail(HttpServletRequest request,@RequestParam Map<String, Object> paramMap, @RequestParam(value="clubno", required=false) int clubno) throws Exception {
+		public ModelAndView club_detail(HttpServletRequest request, @RequestParam(value="clubno", required=false) int clubno) throws Exception {
 			ModelAndView mav = new ModelAndView();
 		
 			ClubModel input = ClubModel.builder().clubno(clubno).build();
@@ -60,16 +60,16 @@ public class ClubController {
 			PostModel input2= PostModel.builder().community_commno(clubno).build();
 			List<PostModel> postList = postService.selectOne(input2);
 			
-			
-			CommentModel input3= CommentModel.builder().post_postno(Integer.valueOf(paramMap.get("postno").toString())).build();
+			/**
+			CommentModel input3= CommentModel.builder().post_postno(4).build();
 			List<CommentModel> commentList = commentService.selectOne(input3);
-			//https://chaelin1211.github.io/study/2021/04/14/thymeleaf-ajax.html
-			//Map<String, Object>에 문제있음, 이해 필요.
 			
+			화면에 나온 값을 ajax로 동기화 시키는 방법찾기..ㅠㅠ
+			*/		
 			
 			mav.addObject("postList", postList);
 			mav.addObject("clubModel",clubModel);
-			mav.addObject("commentList",commentList);
+			//mav.addObject("commentList",commentList);
 			mav.setViewName("content/club_detail.html");
 
 			return mav;
