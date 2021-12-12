@@ -20,7 +20,7 @@
 	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 	crossorigin="anonymous"></script>
 <link th:href="@{/css/club_detail.css}" rel="stylesheet" />
-
+<script src="http://code.jquery.com/jquery.min.js"></script>
 </head>
 
 <body>
@@ -88,7 +88,8 @@
 					<div class="journal">
 						<p th:text="${post.content}"></p>
 					</div>
-					 <input type="hidden" name="postno" th:value="${resultMap.postno}">
+
+					<!-- comment 작성란 -->
 					<div class="comments">
 						<span style="padding: 0 30px;">좋아요(<a href="#"
 							th:text="${post.like}"></a>)
@@ -98,18 +99,18 @@
 						<button type="submit" class="btn btn-warning"
 							style="width: 50px; height: 50px;">등록</button>
 					</div>
-					<input type="hidden" th:name="postno" th:value="${post.postno}" />
-					<div class="comment" th:each="comment: ${commentList}">
-					<div class="c-profile">
-						<span><img src="img/b.jpg" width="40px" height="40px"></span>
-						<p style="font-size: 15px;" th:text="${comment.writer}"></p>
-					</div>
-					<div class="c-comment">
-						<span th:text="${comment.content}"></span>
+					<!-- comment 출력 -->
+					<div class="comment">
+						<div class="c-profile">
+							<span><img src="img/b.jpg" width="40px" height="40px"></span>
+							<p style="font-size: 15px;" id="writer"></p>
+						</div>
+						<div class="c-comment">
+							<span id="commentContent"></span>
+						</div>
 					</div>
 				</div>
-				</div>
-				
+
 
 			</div>
 		</div>
@@ -120,13 +121,28 @@
 			</div>
 			<div class="f-menu">
 				<br /> <span><b><a href="#">서비스소개 &nbsp;&nbsp;</a></b></span> <span><b><a
-						href="#">고객센터</a></b></span> <br />
-				<br />
-				<br />
-				<br /> <span><a href="#"> ©Udon 우리동네클럽</a></span>
+						href="#">고객센터</a></b></span> <br /> <br /> <br /> <br /> <span><a
+					href="#"> ©Udon 우리동네클럽</a></span>
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$.ajax({
+			url:'../club_detail',
+			method: 'get',
+			data:{writer: "#writer", commentContent: "#commentContent"},
+			dataType:'html',
+			
+			success: function(req){
+				$("#writer").appen(req);
+			}
+		})
+		
+	});
+	
+	</script>
+
 </body>
 
 </html>
